@@ -11,21 +11,22 @@ use Hyperf\Database\Migrations\Migration;
 use Hyperf\Database\Schema\Blueprint;
 use Hyperf\Database\Schema\Schema;
 
-class CreateSystemSetting extends Migration
+class CreateUsers extends Migration
 {
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('system_setting', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('app_id')->comment('app id');
-            $table->char('key')->comment('配置名');
-            $table->text('value')->comment('配置值');
-            $table->integer('sort')->comment('排序');
+            $table->bigInteger('app_id')->comment('应用id');
+            $table->char('account', 100)->comment('账户');
+            $table->text('avatar')->comment('头像');
+            $table->char('login_ip')->comment('登录ip');
+            $table->timestamp('login_time')->comment('登录时间');
             $table->timestamps();
-            $table->comment('系统设置表');
+            $table->comment('用户表');
         });
     }
 
@@ -34,6 +35,6 @@ class CreateSystemSetting extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('system_setting');
+        Schema::dropIfExists('users');
     }
 }

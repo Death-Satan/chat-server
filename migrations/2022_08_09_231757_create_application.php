@@ -1,8 +1,15 @@
 <?php
 
-use Hyperf\Database\Schema\Schema;
-use Hyperf\Database\Schema\Blueprint;
+declare(strict_types=1);
+/**
+ * This file is part of Hyperf.
+ *
+ * @author   Death-Satan
+ * @email    death-satan@qq.com
+ */
 use Hyperf\Database\Migrations\Migration;
+use Hyperf\Database\Schema\Blueprint;
+use Hyperf\Database\Schema\Schema;
 
 class CreateApplication extends Migration
 {
@@ -18,6 +25,7 @@ class CreateApplication extends Migration
             $table->text('callback_server')->comment('回调地址');
             $table->tinyInteger('status')->comment('状态 0:不可用 1:正常');
             $table->timestamps();
+            $table->comment('系统应用表');
         });
     }
 
