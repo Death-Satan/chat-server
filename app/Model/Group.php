@@ -20,6 +20,7 @@ use Carbon\Carbon;
  * @property int $status
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property int $creator
  */
 class Group extends Model
 {
@@ -42,5 +43,5 @@ class Group extends Model
      *
      * @var array
      */
-    protected $casts = ['id' => 'integer', 'app_id' => 'integer', 'status' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+    protected $casts = ['id' => 'integer', 'app_id' => 'integer', 'status' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime', 'creator' => 'integer'];
 }
