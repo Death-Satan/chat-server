@@ -20,6 +20,7 @@ class ApplicationSeeder extends Seeder
             'name' => 'demo',
             'app_code' => \Hyperf\Utils\Str::random(32),
             'callback_server' => 'http://localhost/callback',
+            'status' => \App\Enums\ApplicationStatus::NORMAL,
         ]);
     }
 }
