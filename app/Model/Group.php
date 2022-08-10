@@ -9,6 +9,8 @@ declare(strict_types=1);
  */
 namespace App\Model;
 
+use Carbon\Carbon;
+
 /**
  * @property int $id
  * @property int $app_id
@@ -16,8 +18,8 @@ namespace App\Model;
  * @property string $group_code_name
  * @property string $setting
  * @property int $status
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
 class Group extends Model
 {
