@@ -35,7 +35,7 @@ return [
                 Event::ON_MESSAGE => [Hyperf\WebSocketServer\Server::class, 'onMessage'],
                 Event::ON_CLOSE => [Hyperf\WebSocketServer\Server::class, 'onClose'],
             ],
-        ]
+        ],
     ],
     'settings' => [
         Constant::OPTION_ENABLE_COROUTINE => true,
