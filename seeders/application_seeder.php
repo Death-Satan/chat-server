@@ -16,5 +16,10 @@ class ApplicationSeeder extends Seeder
      */
     public function run()
     {
+        \App\Model\Application::create([
+            'name' => 'demo',
+            'app_code' => \Hyperf\Utils\Str::random(32),
+            'callback_server' => 'http://localhost/callback',
+        ]);
     }
 }
