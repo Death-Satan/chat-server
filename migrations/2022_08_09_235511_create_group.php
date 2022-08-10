@@ -23,6 +23,7 @@ class CreateGroup extends Migration
             $table->bigInteger('app_id')->comment('应用id');
             $table->char('name', 100)->comment('群组名称');
             $table->char('group_code_name', 100)->comment('群组code');
+            $table->json('setting')->comment('其他设置');
             $table->tinyInteger('status')->comment('状态');
             $table->timestamps();
             $table->comment('群组表');
