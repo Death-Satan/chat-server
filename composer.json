@@ -29,6 +29,7 @@
         "hyperf/model-cache": "~2.2.0",
         "hyperf/process": "~2.2.0",
         "hyperf/redis": "~2.2.0",
+        "hyperf/snowflake": "v2.2.33.1",
         "hyperf/websocket-server": "^2.2"
     },
     "require-dev": {
