@@ -14,3 +14,8 @@ Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@i
 Router::get('/favicon.ico', function () {
     return '';
 });
+
+Router::addServer('ws', function () {
+    Router::get('/send', \App\Controller\Websocket\SendController::class);
+    Router::get('/message', \App\Controller\Websocket\MessageController::class);
+});

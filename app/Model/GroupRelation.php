@@ -37,4 +37,5 @@ class GroupRelation extends Model
      * @var array
      */
     protected $casts = ['id' => 'integer', 'group_id' => 'integer', 'user_id' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+    protected $guarded = ['id'];
 }

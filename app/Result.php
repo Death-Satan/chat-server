@@ -20,7 +20,7 @@ class Result
     public function systemReturn(int $code = 0, array $data = [], string $msg = ''): \Psr\Http\Message\ResponseInterface
     {
         return $this->response->json(
-            compact('code' . 'data', 'msg')
+            compact('code', 'data', 'msg')
         );
     }
 

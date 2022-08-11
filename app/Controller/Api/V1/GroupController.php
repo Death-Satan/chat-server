@@ -13,9 +13,11 @@ use App\Model\Application;
 use App\Model\Group;
 use App\Model\GroupRelation;
 use App\Model\User;
+use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\PostMapping;
 use Hyperf\Utils\Str;
 
+#[Controller]
 class GroupController extends BaseController
 {
     #[PostMapping('/group/create')]
@@ -25,8 +27,8 @@ class GroupController extends BaseController
         $group_name_code = Str::random(32);
         // 应用code
         $app_code = $this->request->getAttribute('app_code', null);
-//        $app_key = $request->getAttribute('app_key', null);
-//        $app_secret = $request->getAttribute('app_secret', null);
+//        $app_key = $this->request->post('app_key', null);
+//        $app_secret = $this->request->post('app_secret', null);
         $application = Application::where('app_code', $app_code)->first();
         if (empty($application)) {
             return $this->result->error([], '应用不存在');

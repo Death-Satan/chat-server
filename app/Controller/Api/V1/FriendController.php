@@ -12,14 +12,16 @@ namespace App\Controller\Api\V1;
 use App\Model\Application;
 use App\Model\Friend;
 use App\Model\User;
+use Hyperf\HttpServer\Annotation\Controller;
 
+#[Controller]
 class FriendController extends BaseController
 {
     public function add()
     {
         $app_code = $this->request->getAttribute('app_code', null);
-//        $app_key = $request->getAttribute('app_key', null);
-//        $app_secret = $request->getAttribute('app_secret', null);
+//        $app_key = $this->request->post('app_key', null);
+//        $app_secret = $this->request->post('app_secret', null);
         $application = Application::where('app_code', $app_code)->first();
         if (empty($application)) {
             return $this->result->error([], '应用不存在');

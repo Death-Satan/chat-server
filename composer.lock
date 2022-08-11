@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "91aeedc4f1a65e6e829e8e42968972fc",
+    "content-hash": "b9b60a6fdb7e05e35fb397864605b762",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -6102,6 +6102,62 @@
             ],
             "support": {
                 "source": "https://github.com/hyperf/testing/tree/v2.2.33"
+            },
+            "time": "2022-05-24T13:10:54+00:00"
+        },
+        {
+            "name": "hyperf/watcher",
+            "version": "v2.2.33",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hyperf/watcher.git",
+                "reference": "bee6a3dbc67a355fc608d44242f1be8cfec97b2f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hyperf/watcher/zipball/bee6a3dbc67a355fc608d44242f1be8cfec97b2f",
+                "reference": "bee6a3dbc67a355fc608d44242f1be8cfec97b2f",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "ext-swoole": ">=4.5",
+                "hyperf/command": "~2.2.0",
+                "hyperf/di": "~2.2.0",
+                "hyperf/framework": "~2.2.0",
+                "php": ">=7.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev"
+                },
+                "hyperf": {
+                    "config": "Hyperf\\Watcher\\ConfigProvider"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Hyperf\\Watcher\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Hot reload watcher for Hyperf",
+            "keywords": [
+                "hyperf",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/hyperf/watcher/issues",
+                "source": "https://github.com/hyperf/watcher/tree/v2.2.33"
             },
             "time": "2022-05-24T13:10:54+00:00"
         },

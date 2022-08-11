@@ -16,4 +16,5 @@ use Hyperf\ModelCache\CacheableInterface;
 abstract class Model extends BaseModel implements CacheableInterface
 {
     use Cacheable;
+    protected $guarded = ['id'];
 }

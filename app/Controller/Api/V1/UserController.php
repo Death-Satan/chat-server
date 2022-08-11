@@ -14,24 +14,22 @@ use App\Model\User;
 use App\Model\UserToken;
 use Carbon\Carbon;
 use Hyperf\Contract\IdGeneratorInterface;
+use Hyperf\HttpServer\Annotation\Controller;
 use Hyperf\HttpServer\Annotation\PostMapping;
 use Hyperf\HttpServer\Contract\RequestInterface;
 use Hyperf\HttpServer\Contract\ResponseInterface;
 
+#[Controller]
 class UserController extends BaseController
 {
-    public function index(RequestInterface $request, ResponseInterface $response)
-    {
-        return $response->raw('Hello Hyperf!');
-    }
 
     #[PostMapping('/user/login')]
     public function login(RequestInterface $request)
     {
         // 应用code
-        $app_code = $request->getAttribute('app_code', null);
-//        $app_key = $request->getAttribute('app_key', null);
-//        $app_secret = $request->getAttribute('app_secret', null);
+        $app_code = $this->request->post('app_code', null);
+//        $app_key = $this->request->post('app_key', null);
+//        $app_secret = $this->request->post('app_secret', null);
         $application = Application::where('app_code', $app_code)->first();
         if (empty($application)) {
             return $this->result->error([], '应用不存在');
@@ -42,10 +40,9 @@ class UserController extends BaseController
         if (empty($user)) {
             return $this->result->error([], '用户id不存在');
         }
-        $token_generator = $this->container->get(IdGeneratorInterface::class);
         $data = [
             'user_id' => $user->id,
-            'token' => md5($token_generator->generate()),
+            'token' => md5(uniqid().time()),
         ];
         $token = UserToken::create($data);
         return $this->result->success([
@@ -56,21 +53,21 @@ class UserController extends BaseController
     #[PostMapping('/user/reg')]
     public function reg(RequestInterface $request)
     {
-        $account = $request->getAttribute('account');
-        $avatar = $request->getAttribute('avatar');
+        $account = $this->request->post('account');
+        $avatar = $this->request->post('avatar');
         $login_ip = '127.0.0.1';
         $login_time = Carbon::now();
-        $app_code = $request->getAttribute('app_code');
+        $app_code = $this->request->post('app_code');
         $application = Application::where('app_code', $app_code)->first();
         if (empty($application)) {
             return $this->result->error([], '应用不存在');
         }
         $app_id = $application->id;
         $user = User::create(compact('account', 'app_id', 'login_ip', 'login_time', 'avatar'));
-        $token_generator = $this->container->get(IdGeneratorInterface::class);
         $data = [
             'user_id' => $user->id,
-            'token' => md5($token_generator->generate()),
+            'token' => md5(uniqid().time()),
+            'expire_at'=>Carbon::today()
         ];
         $token = UserToken::create($data);
         return $this->result->success([

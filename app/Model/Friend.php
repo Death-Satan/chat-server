@@ -26,6 +26,7 @@ class Friend extends Model
      * @var string
      */
     protected $table = 'friend';
+    protected $guarded = ['id'];
     /**
      * The attributes that are mass assignable.
      *

@@ -29,6 +29,7 @@ class Application extends Model
      */
     protected $table = 'application';
 
+    protected $guarded = ['id'];
     /**
      * The attributes that are mass assignable.
      *

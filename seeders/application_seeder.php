@@ -22,10 +22,11 @@ class ApplicationSeeder extends Seeder
             'app_code' => \Hyperf\Utils\Str::random(32),
             'callback_server' => 'http://localhost/callback',
             'status' => \App\Enums\ApplicationStatus::NORMAL,
+            'app_key' => \Hyperf\Utils\Str::random(32),
+            'app_secret' => \Hyperf\Utils\Str::random(32),
         ]);
         $app_id = $application->id;
         $this->create_users($app_id);
-
     }
 
     protected function create_users($app_id)
