@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
 /**
  * This file is part of Hyperf.
  *
@@ -10,17 +10,16 @@ declare(strict_types=1);
 namespace App\Model;
 
 use Carbon\Carbon;
-
 /**
- * @property int $id
- * @property int $app_id
- * @property string $name
- * @property string $group_code_name
- * @property string $setting
- * @property int $status
- * @property Carbon $created_at
- * @property Carbon $updated_at
- * @property int $creator
+ * @property int $id 
+ * @property int $app_id 
+ * @property string $name 
+ * @property string $group_code_name 
+ * @property string $setting 
+ * @property int $status 
+ * @property \Carbon\Carbon $created_at 
+ * @property \Carbon\Carbon $updated_at 
+ * @property int $creator 
  */
 class Group extends Model
 {
@@ -30,14 +29,12 @@ class Group extends Model
      * @var string
      */
     protected $table = 'group';
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [];
-
     /**
      * The attributes that should be cast to native types.
      *

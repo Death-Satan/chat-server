@@ -1,30 +1,26 @@
 <?php
 
 declare (strict_types=1);
-/**
- * This file is part of Hyperf.
- *
- * @author   Death-Satan
- * @email    death-satan@qq.com
- */
 namespace App\Model;
 
 use Carbon\Carbon;
+
 /**
  * @property int $id 
- * @property int $group_id 
  * @property int $user_id 
- * @property \Carbon\Carbon $created_at 
- * @property \Carbon\Carbon $updated_at 
+ * @property string $token 
+ * @property string $expire_at 
+ * @property Carbon $created_at
+ * @property Carbon $updated_at
  */
-class GroupRelation extends Model
+class UserToken extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'group_relation';
+    protected $table = 'user_token';
     /**
      * The attributes that are mass assignable.
      *
@@ -36,5 +32,5 @@ class GroupRelation extends Model
      *
      * @var array
      */
-    protected $casts = ['id' => 'integer', 'group_id' => 'integer', 'user_id' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+    protected $casts = ['id' => 'integer', 'user_id' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
 }

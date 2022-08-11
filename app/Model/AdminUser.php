@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types=1);
 /**
  * This file is part of Hyperf.
  *
@@ -10,11 +10,11 @@ declare(strict_types=1);
 namespace App\Model;
 
 /**
- * @property int $id
- * @property string $username
- * @property string $password
- * @property \Carbon\Carbon $created_at
- * @property \Carbon\Carbon $updated_at
+ * @property int $id 
+ * @property string $username 
+ * @property string $password 
+ * @property \Carbon\Carbon $created_at 
+ * @property \Carbon\Carbon $updated_at 
  */
 class AdminUser extends Model
 {
@@ -24,14 +24,12 @@ class AdminUser extends Model
      * @var string
      */
     protected $table = 'admin_users';
-
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [];
-
     /**
      * The attributes that should be cast to native types.
      *
