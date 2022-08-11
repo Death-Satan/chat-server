@@ -6,11 +6,13 @@ namespace App\Controller\Websocket;
 
 use Hyperf\HttpServer\Contract\RequestInterface;
 use Hyperf\HttpServer\Contract\ResponseInterface;
+use Swoole\WebSocket\Frame;
+use Swoole\WebSocket\Server;
 
 class MessageController extends BaseController
 {
-    public function index(RequestInterface $request, ResponseInterface $response)
+    public function handle(Server $server, Frame $frame, $data)
     {
-        return $response->raw('Hello Hyperf!');
+        
     }
 }
