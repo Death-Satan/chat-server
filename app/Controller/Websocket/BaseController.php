@@ -12,6 +12,7 @@ namespace App\Controller\Websocket;
 use App\Model\User;
 use App\Model\UserToken;
 use Hyperf\Contract\ContainerInterface;
+use Hyperf\Contract\OnCloseInterface;
 use Hyperf\Contract\OnMessageInterface;
 use Hyperf\Contract\OnOpenInterface;
 use Hyperf\Di\Annotation\Inject;
@@ -22,7 +23,7 @@ use Swoole\WebSocket\Frame;
 use Swoole\WebSocket\Server;
 use Hyperf\WebSocketServer\Sender;
 
-abstract class BaseController implements OnMessageInterface, OnOpenInterface
+abstract class BaseController implements OnMessageInterface, OnOpenInterface,OnCloseInterface
 {
     #[Inject]
     protected ContainerInterface $container;
@@ -65,7 +66,7 @@ abstract class BaseController implements OnMessageInterface, OnOpenInterface
     {
         $app_name = env('APP_NAME');
         $user_id = $this->user()->id;
-        return $this->redis->get($app_name.'_user_id_'.$user_id);
+        return (int)$this->redis->get($app_name.'_user_id_'.$user_id);
     }
 
     protected function send($data)

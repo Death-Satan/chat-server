@@ -31,6 +31,7 @@ class UserController extends BaseController
                  break;
             default:
                  $this->__default($server,$frame,$content);
+                 break;
         }
     }
 
@@ -47,7 +48,8 @@ class UserController extends BaseController
             );
         }
         $group_code_name = $data['group_code_name'];
-        $group = Group::where('group_code',$group_code_name)->first();
+        var_dump($group_code_name);
+        $group = Group::where('group_code_name',$group_code_name)->first();
         if (empty($group))
         {
             $this->send(
@@ -103,6 +105,17 @@ class UserController extends BaseController
                 $this->system([
                     'type'=>'message',
                     'content'=>'永不不存在'
+                ])
+            );
+            return;
+        }
+
+        if ($this->user()->id == $user->id)
+        {
+            $this->send(
+                $this->system([
+                    'type'=>'message',
+                    'content'=>'不能与自己发送消息'
                 ])
             );
             return;
