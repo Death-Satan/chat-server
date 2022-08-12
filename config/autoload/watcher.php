@@ -8,7 +8,7 @@ declare(strict_types=1);
  * @email    death-satan@qq.com
  */
 return [
-    'driver' => Hyperf\Watcher\Driver\FindDriver::class,
+    'driver' => Hyperf\Watcher\Driver\FswatchDriver::class,
     'bin' => 'php',
     'watch' => [
         'dir' => ['app', 'config'],

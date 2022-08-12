@@ -20,6 +20,7 @@ use Hyperf\WebSocketServer\Context;
 use Swoole\Http\Request;
 use Swoole\WebSocket\Frame;
 use Swoole\WebSocket\Server;
+use Hyperf\WebSocketServer\Sender;
 
 abstract class BaseController implements OnMessageInterface, OnOpenInterface
 {
@@ -28,6 +29,9 @@ abstract class BaseController implements OnMessageInterface, OnOpenInterface
 
     #[Inject]
     protected Redis $redis;
+
+    #[Inject]
+    protected Sender $sender;
 
     public function onMessage($server, Frame $frame): void
     {
@@ -39,6 +43,7 @@ abstract class BaseController implements OnMessageInterface, OnOpenInterface
 
     public function onOpen($server, Request $request): void
     {
+        $app_name = env('APP_NAME');
         if ($server instanceof Server && $request instanceof Request) {
             $token = $request->get['token'] ?? null;
             $tokenEnt = UserToken::where('token', $token)->first();
@@ -51,20 +56,38 @@ abstract class BaseController implements OnMessageInterface, OnOpenInterface
                 $server->push($request->fd, '用户不存在');
                 $server->close($request->fd);
             }
-            $this->redis->set('user_id_' . $user->id, $request->fd);
+            $this->redis->set($app_name.'_user_id_' . $user->id, $request->fd);
             Context::set('user', $user);
         }
     }
 
+    protected function getFd()
+    {
+        $app_name = env('APP_NAME');
+        $user_id = $this->user()->id;
+        return $this->redis->get($app_name.'_user_id_'.$user_id);
+    }
+
+    protected function send($data)
+    {
+        $this->sender->push($this->getFd(),$data);
+    }
+
     public function onClose($server, int $fd, int $reactorId): void
     {
+        $app_name = env('APP_NAME');
         $user = $this->user();
         // 离线就删除redis关联
-        $this->redis->del('user_id_' . $user->id);
+        $this->redis->del($app_name.'_user_id_' . $user->id);
     }
 
     protected function user(): User
     {
         return Context::get('user');
+    }
+
+    protected function system($data): bool|string
+    {
+        return json_encode($data,JSON_UNESCAPED_UNICODE);
     }
 }

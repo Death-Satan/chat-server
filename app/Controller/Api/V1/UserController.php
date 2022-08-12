@@ -35,7 +35,7 @@ class UserController extends BaseController
             return $this->result->error([], '应用不存在');
         }
         $app_id = $application->id;
-        $account = $this->request->getAttribute('account');
+        $account = $this->request->post('account');
         $user = User::where('account', $account)->where('app_id', $app_id)->first();
         if (empty($user)) {
             return $this->result->error([], '用户id不存在');
@@ -43,6 +43,7 @@ class UserController extends BaseController
         $data = [
             'user_id' => $user->id,
             'token' => md5(uniqid().time()),
+            'expire_at'=>Carbon::tomorrow()
         ];
         $token = UserToken::create($data);
         return $this->result->success([
@@ -67,7 +68,7 @@ class UserController extends BaseController
         $data = [
             'user_id' => $user->id,
             'token' => md5(uniqid().time()),
-            'expire_at'=>Carbon::today()
+            'expire_at'=>Carbon::tomorrow()
         ];
         $token = UserToken::create($data);
         return $this->result->success([

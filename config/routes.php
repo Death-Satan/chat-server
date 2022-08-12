@@ -16,6 +16,5 @@ Router::get('/favicon.ico', function () {
 });
 
 Router::addServer('ws', function () {
-    Router::get('/send', \App\Controller\Websocket\SendController::class);
-    Router::get('/message', \App\Controller\Websocket\MessageController::class);
+    Router::get('/user', \App\Controller\Websocket\UserController::class);
 });

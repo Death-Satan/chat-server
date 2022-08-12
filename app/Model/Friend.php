@@ -39,4 +39,11 @@ class Friend extends Model
      * @var array
      */
     protected $casts = ['id' => 'integer', 'app_id' => 'integer', 'from_id' => 'integer', 'to_id' => 'integer', 'status' => 'integer', 'created_at' => 'datetime', 'updated_at' => 'datetime'];
+
+    public static function is_friend($from_id,$to_id): bool
+    {
+        $friend_1 = self::query()->newQuery()->where('from_id',$from_id)->where('to_id',$to_id)->first();
+        $friend_2 = self::query()->newQuery()->where('from_id',$to_id)->where('to_id',$from_id)->first();
+        return !empty($friend_1) || !empty($friend_2);
+    }
 }
