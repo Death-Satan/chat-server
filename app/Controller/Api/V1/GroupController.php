@@ -23,7 +23,7 @@ class GroupController extends BaseController
     #[PostMapping('/group/create')]
     public function create()
     {
-        $name = $this->request->getAttribute('name');
+        $name = $this->request->post('name');
         $group_name_code = Str::random(32);
         // 应用code
         $app_code = $this->request->getAttribute('app_code', null);

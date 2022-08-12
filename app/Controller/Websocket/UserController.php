@@ -26,7 +26,7 @@ class UserController extends BaseController
                 $this->group($server,$content);
                  break;
             // 发送单聊消息
-            case 'firend_send':
+            case 'friend_send':
                 $this->friend($server,$content);
                  break;
             default:
@@ -48,7 +48,6 @@ class UserController extends BaseController
             );
         }
         $group_code_name = $data['group_code_name'];
-        var_dump($group_code_name);
         $group = Group::where('group_code_name',$group_code_name)->first();
         if (empty($group))
         {
@@ -104,7 +103,7 @@ class UserController extends BaseController
             $this->send(
                 $this->system([
                     'type'=>'message',
-                    'content'=>'永不不存在'
+                    'content'=>'不存在'
                 ])
             );
             return;

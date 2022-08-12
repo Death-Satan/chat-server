@@ -28,8 +28,6 @@ class UserController extends BaseController
     {
         // 应用code
         $app_code = $this->request->post('app_code', null);
-//        $app_key = $this->request->post('app_key', null);
-//        $app_secret = $this->request->post('app_secret', null);
         $application = Application::where('app_code', $app_code)->first();
         if (empty($application)) {
             return $this->result->error([], '应用不存在');
