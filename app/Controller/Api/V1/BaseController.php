@@ -10,8 +10,4 @@ use Hyperf\HttpServer\Contract\ResponseInterface;
 
 class BaseController extends AbstractController
 {
-    public function index(RequestInterface $request, ResponseInterface $response)
-    {
-        return $response->raw('Hello Hyperf!');
-    }
 }
